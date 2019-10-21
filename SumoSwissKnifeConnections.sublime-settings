@@ -1,0 +1,16 @@
+// List all your connections to DBs here
+{
+  "connections": {
+    "Sumo Connection Name": {
+      "endpoint": "api.[au|ca|de|eu|jp|empty-for-us1|us2|].sumologic.com",
+      "accessId": "abcDEfgHiJKl", // Example
+      "accessKey": "abcDEfgHiJKlabcDEfgHiJKlabcDEfgHiJKl" // Example
+    },
+    "Sumo Connection Name -": {
+      "endpoint": "api.[au|ca|de|eu|jp|empty-for-us1|us2|].sumologic.com",
+      "accessId": "abcDEfgHiJKl", // Example
+      "accessKey": "abcDEfgHiJKlabcDEfgHiJKlabcDEfgHiJKl" // Example
+    },
+  },
+  "default": null
+}

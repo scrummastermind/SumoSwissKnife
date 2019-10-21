@@ -1,0 +1,14 @@
+<snippet>
+	<content>
+		<![CDATA[_index=sumologic_volume sizeInBytes
+| where _sourceCategory="collector_volume"
+| parse regex "\"(?<sourcecategory>[^\"]+)\"\:\\{\"sizeInBytes\"\:(?<bytes>\d+),\"count\"\:(?<count>\d+)\\}" multi
+| bytes/1024/1024/1024 as gbytes 
+| timeslice 1d
+| sum(gbytes) as daily_ingest_gbytes by _timeslice, sourceCategory
+| transpose row _timeslice column collector
+]]>
+	</content>
+	<tabTrigger>sumo: Data Ingest By Source Category</tabTrigger>
+	<scope>source.sumo</scope>
+</snippet>

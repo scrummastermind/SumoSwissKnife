@@ -1,0 +1,15 @@
+<snippet>
+	<content>
+		<![CDATA[_index=sumologic_volume sizeInBytes
+| where _sourceCategory="sourcehost_volume"
+| parse regex "\"(?<sourceHost>[^\"]+)\"\:\\{\"sizeInBytes\"\:(?<bytes>\d+),\"count\"\:(?<count>\d+)\\}" multi
+| bytes/1024/1024/1024 as gbytes 
+| sum(gbytes) as gbytes by sourceHost
+| ((queryEndTime() - queryStartTime())/(1000*60*60*24)) as duration_in_day
+| gbytes / duration_in_day as %"GB/Day"
+| top 5 sourceHost by gbytes, %"GB/Day"
+]]>
+	</content>
+	<tabTrigger>sumo: Data Volume Top 5 Source Hosts</tabTrigger>
+	<scope>source.sumo</scope>
+</snippet>

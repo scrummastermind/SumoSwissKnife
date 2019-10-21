@@ -1,0 +1,125 @@
+[
+  {
+    "caption": "Sumo: Change Results Format (Default: Grid)",
+    "command": "st_select_results_format"
+  },
+  {
+    "caption": "Sumo: Change Time Zone (Default: UTC)",
+    "command": "st_select_time_zone"
+  },
+  {
+    "caption": "Sumo: Select Aggregated Records Results Page - Up To 1000 Entries",
+    "command": "st_select_results_records_page"
+  },
+  {
+    "caption": "Sumo: Select Raw Messages Results Page - Up To 1000 Entries",
+    "command": "st_select_results_messages_page"
+  },
+  {
+    "caption": "Sumo: Show All Sources",
+    "command": "st_show_all_sources"
+  },
+  {
+    "caption": "Sumo: Show Scheduled View Query",
+    "command": "st_show_scheduled_view_query"
+  },
+  {
+    "caption": "Sumo: Show Personal Folder Panels' (Queries)",
+    "command": "st_show_panel_query"
+  },
+    {
+    "caption": "Sumo: Show FER Parse Expression (Query)",
+    "command": "st_show_fer_parse_expression"
+  },
+  {
+    "caption": "Sumo: Select Connection",
+    "command": "st_select_connection"
+  },
+  {
+    "caption": "Sumo: Run Current File Query",
+    "command": "st_execute_all"
+  },
+  {
+    "caption": "Sumo: History",
+    "command": "st_history"
+  },
+  {
+    "caption": "Sumo: Show Ingest Budgets",
+    "command": "st_get_resources",
+    "args": {"api_call":"get_resources","uri_name":"ingestBudgets"}
+  },
+  {
+    "caption": "Sumo: Show Personal Folders",
+    "command": "st_get_resources",
+    "args": {"api_call":"get_resources","api_version":"v2","uri_name":"content/folders/personal", "json_root":"children"}
+  },
+  {
+    "caption": "Sumo: Show All Scheduled Views",
+    "command": "st_show_all_schedueled_views"
+  },
+  {
+    "caption": "Sumo: Show All Partitions",
+    "command": "st_show_all_partitions"
+  },
+  {
+    "caption": "Sumo: All Show FERs",
+    "command": "st_show_all_fers"
+  },
+  {
+    "caption": "Sumo: Show All Source Categories",
+    "command": "st_show_all_categories"
+  },
+    {
+    "caption": "Sumo: Show All Collectors",
+    "command": "st_show_all_collectors"
+  },
+  {
+    "caption": "Sumo: Show All Users",
+    "command": "st_show_all_users"
+  },
+      {
+    "caption": "Sumo: Show All Roles",
+    "command": "st_show_all_roles"
+  },
+  {
+    "caption": "Sumo: Refresh Connection Data",
+    "command": "st_refresh_connection_data"
+  },
+  {
+    "caption": "Sumo: Save Query",
+    "command": "st_save_query"
+  },
+  {
+    "caption": "Sumo: Remove Saved Query",
+    "command": "st_remove_saved_query"
+  },
+  {
+    "caption": "Sumo: List and Open Saved Queries",
+    "command": "st_list_queries"
+  },
+  {
+    "caption": "Sumo: List and Insert Saved Queries",
+    "command": "st_list_queries",
+    "args"   :  {"mode": "insert"}
+  },
+  {
+    "caption": "Sumo: About",
+    "command": "st_version"
+  },
+  {
+    "caption": "Sumo: Setup Connections",
+    "command": "edit_settings", "args":
+    {
+      "base_file": "${packages}/SumoSwissKnife/SumoSwissKnifeConnections.sublime-settings",
+      "default": "// List all your connections to DBs here\n{\n\t\"connections\": {\n\t\t$0\n\t},\n\t\"default\": null\n}"
+    }
+  },
+  {
+    "caption": "Sumo: Settings",
+    "command": "edit_settings", "args":
+    {
+      "base_file": "${packages}/SumoSwissKnife/SumoSwissKnife.sublime-settings",
+      "default": "// Settings in here override those in \"SumoSwissKnife/SumoSwissKnife.sublime-settings\"\n{\n\t$0\n}\n"
+    }
+  }
+]

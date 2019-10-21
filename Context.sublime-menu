@@ -1,0 +1,14 @@
+[
+    {
+        "caption": "Sumo Swiss Knife",
+        "id": "ssk_context",
+        "children":
+        [
+            {
+                "command": "st_beautify_field",
+                "id": "ssk_beautify_field",
+                "caption": "Beautify Selected Field(s)"
+            }
+        ]
+    }
+]

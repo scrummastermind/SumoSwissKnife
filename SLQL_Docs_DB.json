@@ -1,0 +1,1242 @@
+{
+  "AND": {
+    "descr": "--",
+    "name": "And",
+    "params": [],
+    "path": "https://help.sumologic.com/Special:Search?qid=&fpid=230&fpth=&path=&q=AND",
+    "syntax": "--",
+    "type": "Flow operator"
+  },
+  "OR": {
+    "descr": "--",
+    "name": "Or",
+    "params": [],
+    "path": "https://help.sumologic.com/Special:Search?qid=&fpid=230&fpth=&path=&q=OR",
+    "syntax": "--",
+    "type": "Flow operator"
+  },
+  "_blockId": {
+    "descr": "--",
+    "name": "Block ID",
+    "params": [],
+    "path": "https://help.sumologic.com/05Search/Get-Started-with-Search/Search-Basics/Search-Metadata",
+    "syntax": "--",
+    "type": "Field constant"
+  },
+  "_collector": {
+    "descr": "Search messages from a given collector (ex: _collector=SyslogCollector1)",
+    "name": "Collector",
+    "params": [],
+    "path": "https://help.sumologic.com/05Search/Get-Started-with-Search/Search-Basics/Search-Metadata",
+    "syntax": "--",
+    "type": "Field constant"
+  },
+  "_collectorId": {
+    "descr": "--",
+    "name": "Collector ID",
+    "params": [],
+    "path": "https://help.sumologic.com/05Search/Get-Started-with-Search/Search-Basics/Search-Metadata",
+    "syntax": "--",
+    "type": "Field constant"
+  },
+  "_format": {
+    "descr": "--",
+    "name": "Format",
+    "params": [],
+    "path": "https://help.sumologic.com/05Search/Get-Started-with-Search/Search-Basics/Search-Metadata",
+    "syntax": "| smooth data as sdata by _sourcehost",
+    "type": "Field constant"
+  },
+  "_index": {
+    "descr": "Search messages from a given index (ex: _index=allDump)",
+    "name": "Index",
+    "params": [],
+    "path": "https://help.sumologic.com/Special:Search?qid=&fpid=230&fpth=&path=&q=_index",
+    "syntax": "--",
+    "type": "--"
+  },
+  "_messageCount": {
+    "descr": "--",
+    "name": "Message Count",
+    "params": [],
+    "path": "https://help.sumologic.com/05Search/Get-Started-with-Search/Search-Basics/Search-Metadata",
+    "syntax": "| parse \"GET * \" as url | count by url | sort by _count | sort by _count asc",
+    "type": "Field constant"
+  },
+  "_messageId": {
+    "descr": "--",
+    "name": "Message ID",
+    "params": [],
+    "path": "https://help.sumologic.com/05Search/Get-Started-with-Search/Search-Basics/Search-Metadata",
+    "syntax": "*| parse \"query=[*], queryId\" as query | split query escape='', delim=':', quote='\\'' extract op1, op2, op3",
+    "type": "Field constant"
+  },
+  "_messageTime": {
+    "descr": "--",
+    "name": "Message Time",
+    "params": [],
+    "path": "https://help.sumologic.com/05Search/Get-Started-with-Search/Search-Basics/Search-Metadata",
+    "syntax": "--",
+    "type": "Field constant"
+  },
+  "_raw": {
+    "descr": "--",
+    "name": "Raw",
+    "params": [],
+    "path": "https://help.sumologic.com/05Search/Get-Started-with-Search/Search-Basics/Search-Metadata",
+    "syntax": "--",
+    "type": "Field constant"
+  },
+  "_receiptTime": {
+    "descr": "--",
+    "name": "Receipt Time",
+    "params": [],
+    "path": "https://help.sumologic.com/05Search/Get-Started-with-Search/Search-Basics/Search-Metadata",
+    "syntax": "--",
+    "type": "Field constant"
+  },
+  "_size": {
+    "descr": "--",
+    "name": "Size",
+    "params": [],
+    "path": "https://help.sumologic.com/05Search/Get-Started-with-Search/Search-Basics/Search-Metadata",
+    "syntax": "|  timeslice 5m | count by _timeslice | timeslice 1h | sum(bytes_received) by _timeslice | timeslice 1d | max(latency) as maximum_latency by _timeslice",
+    "type": "Field constant"
+  },
+  "_source": {
+    "descr": "Search messages from a given source (ex: _source=log1 or _source=log*)",
+    "name": "Source",
+    "params": [],
+    "path": "https://help.sumologic.com/05Search/Get-Started-with-Search/Search-Basics/Search-Metadata",
+    "syntax": "--",
+    "type": "Field constant"
+  },
+  "_sourceCategory": {
+    "descr": "Search logs across devices or host using the category tag you defined (ex: _sourceCategory=Apache)",
+    "name": "Source Category",
+    "params": [],
+    "path": "https://help.sumologic.com/05Search/Get-Started-with-Search/Search-Basics/Search-Metadata",
+    "syntax": "--",
+    "type": "Field constant"
+  },
+  "_sourceHost": {
+    "descr": "Search messages across sources associated with the hostname tag defined (ex: _sourceHost=USEast*)",
+    "name": "Source Host",
+    "params": [],
+    "path": "https://help.sumologic.com/05Search/Get-Started-with-Search/Search-Basics/Search-Metadata",
+    "syntax": "--",
+    "type": "Field constant"
+  },
+  "_sourceId": {
+    "descr": "--",
+    "name": "Source ID",
+    "params": [],
+    "path": "https://help.sumologic.com/05Search/Get-Started-with-Search/Search-Basics/Search-Metadata",
+    "syntax": "--",
+    "type": "Field constant"
+  },
+  "_sourceName": {
+    "descr": "Search messages within a source file (s) using the file path tag (ex: _sourceName=path/to/file)",
+    "name": "Source Name",
+    "params": [],
+    "path": "https://help.sumologic.com/05Search/Get-Started-with-Search/Search-Basics/Search-Metadata",
+    "syntax": "--",
+    "type": "Field constant"
+  },
+  "_view": {
+    "descr": "Search messages from a given scheduled view (ex: _view=customer_ingest)",
+    "name": "View",
+    "params": [],
+    "path": "https://help.sumologic.com/Special:Search?qid=&fpid=230&fpth=&path=&q=_view",
+    "syntax": "--",
+    "type": "--"
+  },
+  "abs": {
+    "descr": "--",
+    "name": "Absolute Value",
+    "params": [],
+    "path": "https://help.sumologic.com/05Search/Search-Query-Language/Math-Expressions/abs",
+    "syntax": "--",
+    "type": "Math function"
+  },
+  "accum": {
+    "descr": "Cumulative sum",
+    "name": "Accum",
+    "params": [],
+    "path": "https://help.sumologic.com/05Search/Search-Query-Language/Search-Operators/accum",
+    "syntax": "--",
+    "type": "Search operator"
+  },
+  "acos": {
+    "descr": "--",
+    "name": "Acos",
+    "params": [],
+    "path": "https://help.sumologic.com/05Search/Search-Query-Language/Math-Expressions/acos",
+    "syntax": "--",
+    "type": "Math function"
+  },
+  "atan": {
+    "descr": "--",
+    "name": "Atan",
+    "params": [],
+    "path": "https://help.sumologic.com/05Search/Search-Query-Language/Math-Expressions/atan",
+    "syntax": "| count user | top 2 user by _count",
+    "type": "Math function"
+  },
+  "atan2": {
+    "descr": "--",
+    "name": "Atan2",
+    "params": [],
+    "path": "https://help.sumologic.com/05Search/Search-Query-Language/Math-Expressions/atan2",
+    "syntax": "| total memory as tot_memory by _sourceHost",
+    "type": "Math function"
+  },
+  "avg": {
+    "descr": "Calculates average value of the numerical field being evaluated",
+    "name": "Avg",
+    "params": [],
+    "path": "https://help.sumologic.com/Special:Search?qid=&fpid=230&fpth=&path=&q=avg",
+    "syntax": "--",
+    "type": "--"
+  },
+  "backshift": {
+    "descr": "Lagged or backshifted data series.",
+    "name": "Back Shift",
+    "params": [],
+    "path": "https://help.sumologic.com/05Search/Search-Query-Language/Search-Operators/backshift",
+    "syntax": "--",
+    "type": "Search operator"
+  },
+  "base64Decode": {
+    "descr": "Provides Base64 decoding of a string that handles URL-safe and normal mode",
+    "name": "Base 64 Decode",
+    "params": [],
+    "path": "https://help.sumologic.com/Special:Search?qid=&fpid=230&fpth=&path=&q=base64Decode",
+    "syntax": "--",
+    "type": "--"
+  },
+  "base64Encode": {
+    "descr": "Provides Base64 encoding of a string",
+    "name": "Base 64 Encode",
+    "params": [],
+    "path": "https://help.sumologic.com/Special:Search?qid=&fpid=230&fpth=&path=&q=base64Encode",
+    "syntax": "--",
+    "type": "--"
+  },
+  "by": {
+    "descr": "--",
+    "name": "By",
+    "params": [],
+    "path": "https://help.sumologic.com/Special:Search?qid=&fpid=230&fpth=&path=&q=by",
+    "syntax": "--",
+    "type": "Search other"
+  },
+  "cat": {
+    "descr": "Load the results of a previously saved search query",
+    "name": "Cat",
+    "params": [],
+    "path": "https://help.sumologic.com/Special:Search?qid=&fpid=230&fpth=&path=&q=cat",
+    "syntax": "--",
+    "type": "Other operator"
+  },
+  "cbrt": {
+    "descr": "--",
+    "name": "Cbrt",
+    "params": [],
+    "path": "https://help.sumologic.com/05Search/Search-Query-Language/Math-Expressions/cbrt",
+    "syntax": "| transaction on ip with states login, checkout, ... in step | transaction on ip with states login, checkout, ... in step results by states | transaction on ip with states login, checkout, ... in step results by flow",
+    "type": "Math function"
+  },
+  "ceil": {
+    "descr": "Rounds up a single value to the smallest integer value",
+    "name": "Ceil",
+    "params": [],
+    "path": "https://help.sumologic.com/Special:Search?qid=&fpid=230&fpth=&path=&q=ceil",
+    "syntax": "--",
+    "type": "--"
+  },
+  "compare": {
+    "descr": "Runs the same query from a time in the past and compares results",
+    "name": "Compare",
+    "params": [],
+    "path": "https://help.sumologic.com/05Search/Search-Query-Language/Search-Operators/compare",
+    "syntax": "| transactionize field1, field2, field3 | transactionize field1, field2, field3 (sort by _messagetime | diff _messagetime)",
+    "type": "Search operator"
+  },
+  "compareCIDRPrefix": {
+    "descr": "Returns boolean results, where true indicates that prefixes are the same; false indicates that prefixes are different",
+    "name": "Compare CIDR Prefix",
+    "params": [],
+    "path": "https://help.sumologic.com/Special:Search?qid=&fpid=230&fpth=&path=&q=compareCIDRPrefix",
+    "syntax": "--",
+    "type": "--"
+  },
+  "compose": {
+    "descr": "Specify which fields you want to pass back from the child/sub query to the parent query",
+    "name": "Compose",
+    "params": [],
+    "path": "https://help.sumologic.com/05Search/Subqueries",
+    "syntax": "error | timeslice  1m | count by _timeslice, _sourcehost | transpose row _timeslice column _sourcehost",
+    "type": "Subquery operator"
+  },
+  "concat": {
+    "descr": "Concatenates strings, numbers and fields",
+    "name": "Concat",
+    "params": [],
+    "path": "https://help.sumologic.com/Special:Search?qid=&fpid=230&fpth=&path=&q=concat",
+    "syntax": "--",
+    "type": "--"
+  },
+  "contains": {
+    "descr": "Takes two search fields and returns True if field2 exists in field1, or if both are empty",
+    "name": "Contains",
+    "params": [],
+    "path": "https://help.sumologic.com/05Search/Search-Query-Language/Search-Operators/contains",
+    "syntax": "| where time >= 10 | where [subquery: error | count by _sourceCategory | compose _sourceCategory] ",
+    "type": "Search function"
+  },
+  "cos": {
+    "descr": "--",
+    "name": "Cos",
+    "params": [],
+    "path": "https://help.sumologic.com/05Search/Search-Query-Language/Math-Expressions/cos",
+    "syntax": "--",
+    "type": "Math function"
+  },
+  "cosh": {
+    "descr": "--",
+    "name": "Cosh",
+    "params": [],
+    "path": "https://help.sumologic.com/05Search/Search-Query-Language/Math-Expressions/cosh",
+    "syntax": "_sourceCategory=apache | parse \" 200 * \" as size | avg(size) | parse \"response_time=*\" as latency | avg(latency) as average_latency by _sourceHost",
+    "type": "Math function"
+  },
+  "count": {
+    "descr": "Counts total number of messages that match keyword",
+    "name": "Count",
+    "params": [],
+    "path": "https://help.sumologic.com/Metrics/Metric-Queries-and-Alerts/03Metrics_Operators/count",
+    "syntax": "base64Decode(\"aGVsbG8gd29ybGQ=\") as v // v = hello world",
+    "type": "Goup operator"
+  },
+  "count_distinct": {
+    "descr": "Counts only distinct occurrences of value matched",
+    "name": "Count Distinct",
+    "params": [],
+    "path": "https://help.sumologic.com/05Search/Search-Query-Language/aaGroup/count%2C-count-distinct%2C-and-count-frequent",
+    "syntax": "base64Encode(\"hello world\") as b64",
+    "type": "Group function"
+  },
+  "count_distinct_approx": {
+    "descr": "--",
+    "name": "Count Distinct Approx",
+    "params": [],
+    "path": "https://help.sumologic.com/05Search/Search-Query-Language/aaGroup/count%2C-count-distinct%2C-and-count-frequent",
+    "syntax": "cat /foo/bar | where baz = \"hello\"",
+    "type": "Group function"
+  },
+  "count_frequent": {
+    "descr": "Counts frequent occurrences of value matched",
+    "name": "Count Frequent",
+    "params": [],
+    "path": "https://help.sumologic.com/05Search/Search-Query-Language/aaGroup/count%2C-count-distinct%2C-and-count-frequent",
+    "syntax": "ceil(1.5) as v // v = 2",
+    "type": "Group function"
+  },
+  "csv": {
+    "descr": "Extract individual fields from a CSV record",
+    "name": "Csv",
+    "params": [],
+    "path": "https://help.sumologic.com/05Search/Search-Query-Language/01-Parse-Operators/05-Parse-CSV-Formatted-Logs",
+    "syntax": "| compareCIDRPrefix(\"192.168.0.1\", \"10.2.4.111\", toInt(23)) as re | count by re ",
+    "type": "Parsing operator"
+  },
+  "decToHex": {
+    "descr": "Converts long of 16 or fewer digits to hexadecimal string using Two's Complement for negative values",
+    "name": "Dectohex",
+    "params": [],
+    "path": "https://help.sumologic.com/Special:Search?qid=&fpid=230&fpth=&path=&q=decToHex",
+    "syntax": "--",
+    "type": "--"
+  },
+  "diff": {
+    "descr": "Calculate difference between consecutive rows",
+    "name": "Diff",
+    "params": [],
+    "path": "https://help.sumologic.com/05Search/Search-Query-Language/Search-Operators/diff",
+    "syntax": "concat(subnet_addr, host_addr) as ip_addr",
+    "type": "Search operator"
+  },
+  "eval": {
+    "descr": "Evaluates a time series based on a user-specified math expression.",
+    "name": "Evaluation",
+    "params": [],
+    "path": "https://help.sumologic.com/Metrics/Metric-Queries-and-Alerts/03Metrics_Operators/eval",
+    "syntax": "decToHex(\"4919\") as v // v = 1337",
+    "type": "Math operator"
+  },
+  "exp": {
+    "descr": "--",
+    "name": "Exp",
+    "params": [],
+    "path": "https://help.sumologic.com/05Search/Search-Query-Language/Math-Expressions/exp",
+    "syntax": "| first(status_code) group by _sourceHost",
+    "type": "Math function"
+  },
+  "expm1": {
+    "descr": "--",
+    "name": "Expm1",
+    "params": [],
+    "path": "https://help.sumologic.com/05Search/Search-Query-Language/Math-Expressions/expm1",
+    "syntax": "floor(1.5) as v // v = 1",
+    "type": "Math function"
+  },
+  "extract": {
+    "descr": "Extract complex data to create field labels",
+    "name": "Extract",
+    "params": [],
+    "path": "https://help.sumologic.com/05Search/Search-Query-Language/01-Parse-Operators/06-Parse-Delimited-Logs-Using-Split",
+    "syntax": "format(\"%.2f\", avg_val) as formatted_val",
+    "type": "Parsing operator"
+  },
+  "fields": {
+    "descr": "Specify which fields to include in the result",
+    "name": "Fields",
+    "params": [],
+    "path": "https://help.sumologic.com/05Search/Search-Query-Language/Search-Operators/fields",
+    "syntax": "| parse \"ip=*]\" as ip_address | getCIDRPrefix(ip_address, toInt(23)) as prefix",
+    "type": "Search operator"
+  },
+  "fillmissing": {
+    "descr": "Fills missing rows in the output",
+    "name": "Fillmissing",
+    "params": [],
+    "path": "https://help.sumologic.com/05Search/Search-Query-Language/aaGroup/fillmissing",
+    "syntax": "| haversine(latitude1, longitude1, latitude2, longitude2) as distanceKms",
+    "type": "Group operator"
+  },
+  "filter": {
+    "descr": "Filters the output of a search based on filtering criteria of a subquery",
+    "name": "Filter",
+    "params": [],
+    "path": "https://help.sumologic.com/05Search/Search-Query-Language/Search-Operators/filter-operator",
+    "syntax": "hexToAscii(\"74657374\") as v //  v = test",
+    "type": "Search operator"
+  },
+  "first": {
+    "descr": "Oldest value of the field being evaluated",
+    "name": "First",
+    "params": [],
+    "path": "https://help.sumologic.com/Special:Search?qid=&fpid=230&fpth=&path=&q=first",
+    "syntax": "--",
+    "type": "--"
+  },
+  "floor": {
+    "descr": "Rounds down a single value to the largest previous integer value",
+    "name": "Floor",
+    "params": [],
+    "path": "https://help.sumologic.com/Special:Search?qid=&fpid=230&fpth=&path=&q=floor",
+    "syntax": "--",
+    "type": "--"
+  },
+  "format": {
+    "descr": "Formats data into a string",
+    "name": "Format",
+    "params": [],
+    "path": "https://help.sumologic.com/Special:Search?qid=&fpid=230&fpth=&path=&q=format",
+    "syntax": "--",
+    "type": "--"
+  },
+  "formatDate": {
+    "descr": "Returns formatted date and time",
+    "name": "Formatdate",
+    "params": [],
+    "path": "https://help.sumologic.com/05Search/Search-Query-Language/Search-Operators/formatDate",
+    "syntax": "hexToDec(\"1337\") as v // v = 4919",
+    "type": "Format function"
+  },
+  "getCIDRPrefix": {
+    "descr": "Produces the CIDR prefixes of parsed IP addresses",
+    "name": "Getcidrprefix",
+    "params": [],
+    "path": "https://help.sumologic.com/Special:Search?qid=&fpid=230&fpth=&path=&q=getCIDRPrefix",
+    "syntax": "--",
+    "type": "--"
+  },
+  "group": {
+    "descr": "--",
+    "name": "Group",
+    "params": [],
+    "path": "https://help.sumologic.com/05Search/Search-Query-Language/aaGroup",
+    "syntax": "*| parse \"[remote_ip=*]\" as ip, ipv4ToNumber(ip) as dec_ip",
+    "type": "Group operator"
+  },
+  "haversine": {
+    "descr": "Given the latitude/longitude values of two points, returns the distance between them in kilometers",
+    "name": "Haversine",
+    "params": [],
+    "path": "https://help.sumologic.com/Special:Search?qid=&fpid=230&fpth=&path=&q=haversine",
+    "syntax": "--",
+    "type": "--"
+  },
+  "hexToAscii": {
+    "descr": "Converts hexadecimal string to ASCII string",
+    "name": "Hex To ASCII",
+    "params": [],
+    "path": "https://help.sumologic.com/Special:Search?qid=&fpid=230&fpth=&path=&q=hexToAscii",
+    "syntax": "--",
+    "type": "--"
+  },
+  "hexToDec": {
+    "descr": "Converts hexadecimal string of 16 or fewer characters to long using Two's Complement for negative values",
+    "name": "Hex To Dec",
+    "params": [],
+    "path": "https://help.sumologic.com/Special:Search?qid=&fpid=230&fpth=&path=&q=hexToDec",
+    "syntax": "--",
+    "type": "--"
+  },
+  "hypot": {
+    "descr": "--",
+    "name": "Hypot",
+    "params": [],
+    "path": "https://help.sumologic.com/05Search/Search-Query-Language/Math-Expressions/hypot",
+    "syntax": "* | isBlank(_sourceCategory) as sc_is_blank",
+    "type": "Math function"
+  },
+  "if": {
+    "descr": "--",
+    "name": "If",
+    "params": [],
+    "path": "https://help.sumologic.com/Special:Search?qid=&fpid=230&fpth=&path=&q=if",
+    "syntax": "--",
+    "type": "Flow function"
+  },
+  "int": {
+    "descr": "--",
+    "name": "Int",
+    "params": [],
+    "path": "https://help.sumologic.com/Special:Search?qid=&fpid=230&fpth=&path=&q=int",
+    "syntax": "--",
+    "type": "Cast function"
+  },
+  "ipv4ToNumber": {
+    "descr": "Converts IP address to decimal",
+    "name": "IP v4 To Number",
+    "params": [],
+    "path": "https://help.sumologic.com/Special:Search?qid=&fpid=230&fpth=&path=&q=ipv4ToNumber",
+    "syntax": "--",
+    "type": "--"
+  },
+  "isBlank": {
+    "descr": "Takes a single string and returns true if the string is null, empty, or whitespace",
+    "name": "Is Blank",
+    "params": [],
+    "path": "https://help.sumologic.com/Special:Search?qid=&fpid=230&fpth=&path=&q=isBlank",
+    "syntax": "--",
+    "type": "--"
+  },
+  "isEmpty": {
+    "descr": "Takes a single string and returns true if the string is null or empty",
+    "name": "Is Empty",
+    "params": [],
+    "path": "https://help.sumologic.com/Special:Search?qid=&fpid=230&fpth=&path=&q=isEmpty",
+    "syntax": "--",
+    "type": "--"
+  },
+  "isNull": {
+    "descr": "Takes a single parameter and returns true if the value is null",
+    "name": "Is Null",
+    "params": [],
+    "path": "https://help.sumologic.com/Special:Search?qid=&fpid=230&fpth=&path=&q=isNull",
+    "syntax": "--",
+    "type": "--"
+  },
+  "isNumeric": {
+    "descr": "Returns true iff the input string is a number",
+    "name": "Is Numeric",
+    "params": [],
+    "path": "https://help.sumologic.com/Special:Search?qid=&fpid=230&fpth=&path=&q=isNumeric",
+    "syntax": "--",
+    "type": "--"
+  },
+  "isPrivateIP": {
+    "descr": "Returns true if the input is a valid private IPv4 address",
+    "name": "Isprivateip",
+    "params": [],
+    "path": "https://help.sumologic.com/Special:Search?qid=&fpid=230&fpth=&path=&q=isPrivateIP",
+    "syntax": "--",
+    "type": "--"
+  },
+  "isPublicIP": {
+    "descr": "Returns true if the input is a valid public IPv4 address",
+    "name": "Is Public IP",
+    "params": [],
+    "path": "https://help.sumologic.com/Special:Search?qid=&fpid=230&fpth=&path=&q=isPublicIP",
+    "syntax": "--",
+    "type": "--"
+  },
+  "isValidIP": {
+    "descr": "Returns true if the input is a valid IP address",
+    "name": "Is Valid IP",
+    "params": [],
+    "path": "https://help.sumologic.com/Special:Search?qid=&fpid=230&fpth=&path=&q=isValidIP",
+    "syntax": "--",
+    "type": "--"
+  },
+  "isValidIPv4": {
+    "descr": "Returns true if the input is a valid IPv4 address",
+    "name": "Is Valid IP v4",
+    "params": [],
+    "path": "https://help.sumologic.com/Special:Search?qid=&fpid=230&fpth=&path=&q=isValidIPv4",
+    "syntax": "--",
+    "type": "--"
+  },
+  "isValidIPv6": {
+    "descr": "Returns true if the input is a valid IPv6 address",
+    "name": "Is Valid IP v6",
+    "params": [],
+    "path": "https://help.sumologic.com/Special:Search?qid=&fpid=230&fpth=&path=&q=isValidIPv6",
+    "syntax": "--",
+    "type": "--"
+  },
+  "join": {
+    "descr": "SQL-like join that combines fields from two or more queries by using values common to each",
+    "name": "Join",
+    "params": [],
+    "path": "https://help.sumologic.com/05Search/Search-Query-Language/Search-Operators/join",
+    "syntax": "* | isEmpty(_sourceCategory) as sc_is_empty",
+    "type": "Search operator"
+  },
+  "json": {
+    "descr": "Extract values from JSON",
+    "name": "JSON",
+    "params": [],
+    "path": "https://help.sumologic.com/05Search/Search-Query-Language/01-Parse-Operators/03-Parse-JSON-Formatted-Logs",
+    "syntax": "* | isNull(_sourceCategory) as sc_is_null",
+    "type": "Search operator"
+  },
+  "json auto": {
+    "descr": "--",
+    "name": "Json Auto",
+    "params": [],
+    "path": "https://help.sumologic.com/05Search/Search-Query-Language/01-Parse-Operators/03-Parse-JSON-Formatted-Logs",
+    "syntax": "* | isNumeric(num) as isNum",
+    "type": "JSON operator"
+  },
+  "json_auto": {
+    "descr": "Automatically extract values from JSON",
+    "name": "JSON Auto",
+    "params": [],
+    "path": "https://help.sumologic.com/Special:Search?qid=&fpid=230&fpth=&path=&q=json_auto",
+    "syntax": "--",
+    "type": "JSON operator"
+  },
+  "keyvalue": {
+    "descr": "Extract values from key-value pairs",
+    "name": "Key Value",
+    "params": [],
+    "path": "https://help.sumologic.com/05Search/Search-Query-Language/01-Parse-Operators/04-Parse-Keyvalue-Formatted-Logs",
+    "syntax": "| isPrivateIP(dest_host) as isPrivate",
+    "type": "Search operator"
+  },
+  "keyvalue auto": {
+    "descr": "--",
+    "name": "Key Value Auto",
+    "params": [],
+    "path": "https://help.sumologic.com/05Search/Search-Query-Language/01-Parse-Operators/04-Parse-Keyvalue-Formatted-Logs",
+    "syntax": "| isPublicIP(dest_host) as isPublic",
+    "type": "Key value operator"
+  },
+  "keyvalue_auto": {
+    "descr": "Automatically extract keys and values from key-value pairs",
+    "name": "Key Value Auto",
+    "params": [],
+    "path": "https://help.sumologic.com/Special:Search?qid=&fpid=230&fpth=&path=&q=keyvalue_auto",
+    "syntax": "--",
+    "type": "--"
+  },
+  "kv": {
+    "descr": "--",
+    "name": "KV",
+    "params": [],
+    "path": "https://help.sumologic.com/05Search/Search-Query-Language/01-Parse-Operators/04-Parse-Keyvalue-Formatted-Logs",
+    "syntax": "| isValidIP(dest_host) as isValid",
+    "type": "Parsing operator"
+  },
+  "last": {
+    "descr": "Most recent value of the field being evaluated within the time range",
+    "name": "Last",
+    "params": [],
+    "path": "https://help.sumologic.com/Special:Search?qid=&fpid=230&fpth=&path=&q=last",
+    "syntax": "--",
+    "type": "--"
+  },
+  "length": {
+    "descr": "Returns the number of characters in a string",
+    "name": "Length",
+    "params": [],
+    "path": "https://help.sumologic.com/Special:Search?qid=&fpid=230&fpth=&path=&q=length",
+    "syntax": "--",
+    "type": "--"
+  },
+  "limit": {
+    "descr": "Limit # of results returned",
+    "name": "Limit",
+    "params": [],
+    "path": "https://help.sumologic.com/05Search/Search-Query-Language/Search-Operators/limit",
+    "syntax": "| isValidIPv4(dest_host) as isValid",
+    "type": "Reduction operator"
+  },
+  "log": {
+    "descr": "--",
+    "name": "Log",
+    "params": [],
+    "path": "https://help.sumologic.com/05Search/Search-Query-Language/Math-Expressions/log",
+    "syntax": "| isValidIPv6(dest_host) as isValid",
+    "type": "Math function"
+  },
+  "log10": {
+    "descr": "--",
+    "name": "Log10",
+    "params": [],
+    "path": "https://help.sumologic.com/05Search/Search-Query-Language/Math-Expressions/log10",
+    "syntax": "* | keyvalue auto",
+    "type": "Math function"
+  },
+  "log1p": {
+    "descr": "--",
+    "name": "Log1P",
+    "params": [],
+    "path": "https://help.sumologic.com/05Search/Search-Query-Language/Math-Expressions/log1p",
+    "syntax": "| last(status_code) group by _sourceHost",
+    "type": "Math function"
+  },
+  "logcompare": {
+    "descr": "Compare messages and display the changes in patterns from one point of time to another",
+    "name": "Logcompare",
+    "params": [],
+    "path": "https://help.sumologic.com/05Search/LogCompare/LogCompare-Syntax",
+    "syntax": "length(field) as field_length",
+    "type": "Log operator"
+  },
+  "logreduce": {
+    "descr": "Cluster messages based on pattern similarites",
+    "name": "Log Reduce",
+    "params": [],
+    "path": "https://help.sumologic.com/05Search/LogReduce/LogReduce-Syntax",
+    "syntax": " luhn(maybe_credit_card) as isValid",
+    "type": "Reduction operator"
+  },
+  "lookup": {
+    "descr": "Lookup fields from an outside source",
+    "name": "Lookup",
+    "params": [],
+    "path": "https://help.sumologic.com/05Search/Search-Query-Language/Search-Operators/lookup",
+    "syntax": "| maskFromCIDR(toInt(23)) as s",
+    "type": "Lookup operator"
+  },
+  "luhn": {
+    "descr": "Validate a number as a credit card number using Luhn's algorithm",
+    "name": "Luhn",
+    "params": [],
+    "path": "https://help.sumologic.com/Special:Search?qid=&fpid=230&fpth=&path=&q=luhn",
+    "syntax": "--",
+    "type": "--"
+  },
+  "maskFromCIDR": {
+    "descr": "Returns an IP address subnet mask",
+    "name": "Mask From CIDR",
+    "params": [],
+    "path": "https://help.sumologic.com/Special:Search?qid=&fpid=230&fpth=&path=&q=maskFromCIDR",
+    "syntax": "--",
+    "type": "--"
+  },
+  "max": {
+    "descr": "Maximum value of the numerical field being evaluated within the time range analyzed",
+    "name": "Max",
+    "params": [],
+    "path": "https://help.sumologic.com/Special:Search?qid=&fpid=230&fpth=&path=&q=max",
+    "syntax": "--",
+    "type": "--"
+  },
+  "min": {
+    "descr": "Minimum value of the numerical field being evaluated within the time range.",
+    "name": "Min",
+    "params": [],
+    "path": "https://help.sumologic.com/Special:Search?qid=&fpid=230&fpth=&path=&q=min",
+    "syntax": "--",
+    "type": "--"
+  },
+  "now": {
+    "descr": "Returns the current time in milliseconds",
+    "name": "Now",
+    "params": [],
+    "path": "https://help.sumologic.com/Special:Search?qid=&fpid=230&fpth=&path=&q=now",
+    "syntax": "--",
+    "type": "--"
+  },
+  "num": {
+    "descr": "--",
+    "name": "Num",
+    "params": [],
+    "path": "https://help.sumologic.com/05Search/Search-Query-Language/Search-Operators/num",
+    "syntax": "| max(latency) | max(request_received) as maximum_request_received by _timeslice",
+    "type": "Num function"
+  },
+  "order": {
+    "descr": "Orders aggregate search results.  A synonym for sort.",
+    "name": "Order",
+    "params": [],
+    "path": "https://help.sumologic.com/Special:Search?qid=&fpid=230&fpth=&path=&q=order",
+    "syntax": "--",
+    "type": "--"
+  },
+  "outlier": {
+    "descr": "Identify outliers in a time series sequence of numeric data",
+    "name": "Outlier",
+    "params": [],
+    "path": "https://help.sumologic.com/05Search/Search-Query-Language/Search-Operators/outlier",
+    "syntax": "| min(latency) | min(request_received) as minimum_request_received by _timeslice",
+    "type": "Search operator"
+  },
+  "parse": {
+    "descr": "Parse a message and create one or more new field labels",
+    "name": "Parse",
+    "params": [],
+    "path": "https://help.sumologic.com/05Search/Search-Query-Language/01-Parse-Operators/01-Parse-Predictable-Patterns-Using-an-Anchor",
+    "syntax": "* | now() as time",
+    "type": "Predictable Logs Parsing operator (Anchor)"
+  },
+  "parse regex": {
+    "descr": "--",
+    "name": "Parse Regex",
+    "params": [],
+    "path": "https://help.sumologic.com/05Search/Search-Query-Language/01-Parse-Operators/02-Parse-Variable-Patterns-Using-Regex",
+    "syntax": "| parse \"GET * \" as url | count by url | order by _count | order by _count asc",
+    "type": "Variable Logs Parsing (Complex)"
+  },
+  "parse xml": {
+    "descr": "--",
+    "name": "Parse Xml",
+    "params": [],
+    "path": "https://help.sumologic.com/05Search/Search-Query-Language/01-Parse-Operators/07-Parse-XML-Formatted-Logs",
+    "syntax": "| parse regex \"(?<src_ip>\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3})\"",
+    "type": "Predictable Logs Parsing(XML)"
+  },
+  "parseHex": {
+    "descr": "Converts a hex string of 16 or fewer characters to a long; legacy method for hexToDec",
+    "name": "Parsehex",
+    "params": [],
+    "path": "https://help.sumologic.com/Special:Search?qid=&fpid=230&fpth=&path=&q=parseHex",
+    "syntax": "--",
+    "type": "--"
+  },
+  "parse nodrop": {
+    "descr": "Parse and include messages that do not match the parse term",
+    "name": "Parse No Drop",
+    "params": [],
+    "path": "https://help.sumologic.com/Special:Search?qid=&fpid=230&fpth=&path=&q=parse",
+    "syntax": "--",
+    "type": "--"
+  },
+  "parse regex": {
+    "descr": "Extract complex data to create field labels",
+    "name": "Parse Regex",
+    "params": [],
+    "path": "https://help.sumologic.com/05Search/Search-Query-Language/01-Parse-Operators/02-Parse-Variable-Patterns-Using-Regex",
+    "syntax": "--",
+    "type": "--"
+  },
+  "parse regex nodrop": {
+    "descr": "Parse using regex and include messages that do not match the parse term",
+    "name": "Parse Regex Nodrop",
+    "params": [],
+    "path": "https://help.sumologic.com/05Search/Search-Query-Language/01-Parse-Operators/02-Parse-Variable-Patterns-Using-Regex",
+    "syntax": "--",
+    "type": "--"
+  },
+  "parse xml": {
+    "descr": "Extract values from XML using Xpath",
+    "name": "Parse Xml",
+    "params": [],
+    "path": "https://help.sumologic.com/05Search/Search-Query-Language/01-Parse-Operators/07-Parse-XML-Formatted-Logs",
+    "syntax": "--",
+    "type": "--"
+  },
+  "parse xml nodrop": {
+    "descr": "Extract values from XML using Xpath and include messages that don't match",
+    "name": "Parse Xml No Drop",
+    "params": [],
+    "path": "https://help.sumologic.com/05Search/Search-Query-Language/01-Parse-Operators/07-Parse-XML-Formatted-Logs",
+    "syntax": "--",
+    "type": "--"
+  },
+  "pct": {
+    "descr": "Percentile value of any field being evaluated within the time range.",
+    "name": "Pct",
+    "params": [],
+    "path": "https://help.sumologic.com/Special:Search?qid=&fpid=230&fpth=&path=&q=pct",
+    "syntax": "--",
+    "type": "--"
+  },
+  "predict": {
+    "descr": "Predict a time series sequence of numeric data",
+    "name": "Predict",
+    "params": [],
+    "path": "https://help.sumologic.com/05Search/Search-Query-Language/Search-Operators/predict",
+    "syntax": "* | parse XML /root/@attribute\" as attribute",
+    "type": "Search operator"
+  },
+  "queryEndTime()": {
+    "descr": "--",
+    "name": "Query End Time",
+    "params": [],
+    "path": "https://help.sumologic.com/05Search/Search-Query-Language/Search-Operators/queryEndTime()",
+    "syntax": "parseHex(\"00000000CAFEBABE\") as v // v = 3405691582",
+    "type": "Search operator"
+  },
+  "queryStartTime()": {
+    "descr": "--",
+    "name": "Query Start Time",
+    "params": [],
+    "path": "https://help.sumologic.com/05Search/Search-Query-Language/Search-Operators/queryStartTime()",
+    "syntax": "| pct(latency, 95) | pct(request_received, 99) as 99th_percentile_request_received | pct(request_received, 50, 95, 99) by _timeslice",
+    "type": "Search operator"
+  },
+  "queryTimeRange()": {
+    "descr": "--",
+    "name": "Query Time Range",
+    "params": [],
+    "path": "https://help.sumologic.com/05Search/Search-Query-Language/Search-Operators/queryTimeRange()",
+    "syntax": "| queryEndTime() as <alias>",
+    "type": "Search operator"
+  },
+  "replace": {
+    "descr": "Replaces all matches found for given pattern with another string",
+    "name": "Replace",
+    "params": [],
+    "path": "https://help.sumologic.com/Special:Search?qid=&fpid=230&fpth=&path=&q=replace",
+    "syntax": "--",
+    "type": "--"
+  },
+  "rollingstd": {
+    "descr": "Running standard deviation on numeric data.",
+    "name": "Rolling STD",
+    "params": [],
+    "path": "https://help.sumologic.com/05Search/Search-Query-Language/Search-Operators/rollingstd",
+    "syntax": "| queryStartTime() as <alias>",
+    "type": "Search operator"
+  },
+  "round": {
+    "descr": "--",
+    "name": "Round",
+    "params": [],
+    "path": "https://help.sumologic.com/05Search/Search-Query-Language/Math-Expressions/round",
+    "syntax": "| queryTimeRange() as <alias>",
+    "type": "Math function"
+  },
+  "save": {
+    "descr": "Save the result of this search query",
+    "name": "Save",
+    "params": [],
+    "path": "https://help.sumologic.com/05Search/Search-Query-Language/Search-Operators/save",
+    "syntax": "*| parse \"[hostId=*]\" as hostId | replace(hostId, \"-\", \" \") as newHostId   | replace(filename, /[0-9]/, \"\") as filename",
+    "type": "Search operator"
+  },
+  "sessionize": {
+    "descr": "Find correlating values in disparate logs",
+    "name": "Sessionize",
+    "params": [],
+    "path": "https://help.sumologic.com/05Search/Search-Query-Language/Search-Operators/sessionize",
+    "syntax": "| stddev(request_received) group by hour",
+    "type": "Parsing operator"
+  },
+  "signum": {
+    "descr": "--",
+    "name": "Signum",
+    "params": [],
+    "path": "https://help.sumologic.com/05Search/Search-Query-Language/Math-Expressions/signum",
+    "syntax": "| substring(big_string, start_offset[, end_offset]) as little_string",
+    "type": "Math function"
+  },
+  "sin": {
+    "descr": "--",
+    "name": "Sin",
+    "params": [],
+    "path": "https://help.sumologic.com/05Search/Search-Query-Language/Math-Expressions/sin",
+    "syntax": "| parse \"bytes_sent=*\" as bytes | sum(bytes) as total_bytes_sent | parse \"filesize=*\" as filesize | sum(filesize) by _sourceHost",
+    "type": "Math function"
+  },
+  "sinh": {
+    "descr": "--",
+    "name": "Sinh",
+    "params": [],
+    "path": "https://help.sumologic.com/05Search/Search-Query-Language/Math-Expressions/sinh",
+    "syntax": "error or fail* | summarize | parse \"message: *\" as msg | summarize field=msg",
+    "type": "Math function"
+  },
+  "smooth": {
+    "descr": "Running average on numeric data.",
+    "name": "Smooth",
+    "params": [],
+    "path": "https://help.sumologic.com/05Search/Search-Query-Language/Search-Operators/smooth",
+    "syntax": "toLowerCase(\"ERROR\"\") as err",
+    "type": "Search operator"
+  },
+  "sort": {
+    "descr": "Orders aggregate search results",
+    "name": "Sort",
+    "params": [],
+    "path": "https://help.sumologic.com/05Search/Search-Query-Language/Search-Operators/sort",
+    "syntax": "| topk(#, <sort_fields>) [by Group_by_fields]",
+    "type": "Search operator"
+  },
+  "split": {
+    "descr": "Extract individual fields from a delimiter separated record",
+    "name": "Split",
+    "params": [],
+    "path": "https://help.sumologic.com/05Search/Search-Query-Language/Search-Operators/split",
+    "syntax": "toUpperCase(\"error\") as err",
+    "type": "Parsing operator"
+  },
+  "sqrt": {
+    "descr": "--",
+    "name": "Sqrt",
+    "params": [],
+    "path": "https://help.sumologic.com/05Search/Search-Query-Language/Math-Expressions/sqrt",
+    "syntax": "| tourl(\"https://www.sumologic.net/ui/#section/search/abcdefghijklemopqrst\", \"Akamai Denials by Host\") as Akamai",
+    "type": "Math function"
+  },
+  "stddev": {
+    "descr": "Finds the standard deviation value for a distribution of numerical values",
+    "name": "Stddev",
+    "params": [],
+    "path": "https://help.sumologic.com/Special:Search?qid=&fpid=230&fpth=&path=&q=stddev",
+    "syntax": "--",
+    "type": "--"
+  },
+  "substring": {
+    "descr": "Returns a substring given a start offset and an optional end offset",
+    "name": "Substring",
+    "params": [],
+    "path": "https://help.sumologic.com/Special:Search?qid=&fpid=230&fpth=&path=&q=substring",
+    "syntax": "--",
+    "type": "--"
+  },
+  "sum": {
+    "descr": "Sums values of the numerical field being evaluated",
+    "name": "Sum",
+    "params": [],
+    "path": "https://help.sumologic.com/Special:Search?qid=&fpid=230&fpth=&path=&q=sum",
+    "syntax": "--",
+    "type": "--"
+  },
+  "summarize": {
+    "descr": "Cluster messages based on pattern similarites",
+    "name": "Summarize",
+    "params": [],
+    "path": "https://help.sumologic.com/Special:Search?qid=&fpid=230&fpth=&path=&q=summarize",
+    "syntax": "--",
+    "type": "--"
+  },
+  "tan": {
+    "descr": "--",
+    "name": "Tan",
+    "params": [],
+    "path": "https://help.sumologic.com/05Search/Search-Query-Language/Math-Expressions/tan",
+    "syntax": "| trim(field) as trimmed_field",
+    "type": "Math function"
+  },
+  "tanh": {
+    "descr": "--",
+    "name": "Tanh",
+    "params": [],
+    "path": "https://help.sumologic.com/05Search/Search-Query-Language/Math-Expressions/tanh",
+    "syntax": "| urldecode(paramval) as decoded",
+    "type": "Math function"
+  },
+  "timeslice": {
+    "descr": "Segment data by time periods or bucketed over time range",
+    "name": "Timeslice",
+    "params": [],
+    "path": "https://help.sumologic.com/05Search/Search-Query-Language/Search-Operators/timeslice",
+    "syntax": "| kv \"html_url\" as url | urlencode(url)",
+    "type": "Search operator"
+  },
+  "toDegrees": {
+    "descr": "--",
+    "name": "Todegrees",
+    "params": [],
+    "path": "https://help.sumologic.com/05Search/Search-Query-Language/Math-Expressions/toDegrees",
+    "syntax": "--",
+    "type": "Math function"
+  },
+  "toDouble": {
+    "descr": "--",
+    "name": "Todouble",
+    "params": [],
+    "path": "https://help.sumologic.com/05Search/Search-Query-Language/Search-Operators/Manually-Casting-String-Data-to-a-Number",
+    "syntax": "--",
+    "type": "Search function"
+  },
+  "toInt": {
+    "descr": "--",
+    "name": "Toint",
+    "params": [],
+    "path": "https://help.sumologic.com/05Search/Search-Query-Language/Search-Operators/Manually-Casting-String-Data-to-a-Number",
+    "syntax": "--",
+    "type": "Search function"
+  },
+  "toLong": {
+    "descr": "--",
+    "name": "Tolong",
+    "params": [],
+    "path": "https://help.sumologic.com/05Search/Search-Query-Language/Search-Operators/Manually-Casting-String-Data-to-a-Number",
+    "syntax": "--",
+    "type": "Search function"
+  },
+  "toLowerCase": {
+    "descr": "Converts all the characters of a string to lower case",
+    "name": "Tolowercase",
+    "params": [],
+    "path": "https://help.sumologic.com/Special:Search?qid=&fpid=230&fpth=&path=&q=toLowerCase",
+    "syntax": "--",
+    "type": "--"
+  },
+  "toNum": {
+    "descr": "--",
+    "name": "Tonum",
+    "params": [],
+    "path": "https://help.sumologic.com/05Search/Search-Query-Language/Search-Operators/Manually-Casting-String-Data-to-a-Number",
+    "syntax": "--",
+    "type": "Search function"
+  },
+  "toNumber": {
+    "descr": "--",
+    "name": "Tonumber",
+    "params": [],
+    "path": "https://help.sumologic.com/05Search/Search-Query-Language/Search-Operators/Manually-Casting-String-Data-to-a-Number",
+    "syntax": "--",
+    "type": "Search function"
+  },
+  "toRadians": {
+    "descr": "--",
+    "name": "Toradians",
+    "params": [],
+    "path": "https://help.sumologic.com/05Search/Search-Query-Language/Math-Expressions/toRadians",
+    "syntax": "--",
+    "type": "Math function"
+  },
+  "toString": {
+    "descr": "--",
+    "name": "Tostring",
+    "params": [],
+    "path": "https://help.sumologic.com/05Search/Search-Query-Language/Search-Operators/Manually-Casting-String-Data-to-a-Number",
+    "syntax": "--",
+    "type": "Search function"
+  },
+  "toUpperCase": {
+    "descr": "Converts all the characters of a string to upper case",
+    "name": "Touppercase",
+    "params": [],
+    "path": "https://help.sumologic.com/Special:Search?qid=&fpid=230&fpth=&path=&q=toUpperCase",
+    "syntax": "--",
+    "type": "--"
+  },
+  "top": {
+    "descr": "Limit # of sorted results to most or highest per group-by function",
+    "name": "Top",
+    "params": [],
+    "path": "https://help.sumologic.com/05Search/Search-Query-Language/Search-Operators/top",
+    "syntax": "--",
+    "type": "Sorting function"
+  },
+  "topk": {
+    "descr": "Find top fields based on a given sort order",
+    "name": "Topk",
+    "params": [],
+    "path": "https://help.sumologic.com/Special:Search?qid=&fpid=230&fpth=&path=&q=topk",
+    "syntax": "--",
+    "type": "--"
+  },
+  "total": {
+    "descr": "Column total",
+    "name": "Total",
+    "params": [],
+    "path": "https://help.sumologic.com/05Search/Search-Query-Language/Search-Operators/total",
+    "syntax": "--",
+    "type": "Search operator"
+  },
+  "tourl": {
+    "descr": "Provides you the ability to assign a short name that describes the URL",
+    "name": "Tourl",
+    "params": [],
+    "path": "https://help.sumologic.com/Special:Search?qid=&fpid=230&fpth=&path=&q=tourl",
+    "syntax": "--",
+    "type": "--"
+  },
+  "trace": {
+    "descr": "Retrieve activity associated with a value",
+    "name": "Trace",
+    "params": [],
+    "path": "https://help.sumologic.com/05Search/Search-Query-Language/Search-Operators/trace",
+    "syntax": "--",
+    "type": "Search operator"
+  },
+  "transaction": {
+    "descr": "Analyzes sequences of related logs",
+    "name": "Transaction",
+    "params": [],
+    "path": "https://help.sumologic.com/05Search/Search-Query-Language/Transaction-Analytics/Transaction-Operator",
+    "syntax": "--",
+    "type": "Search operator"
+  },
+  "transactionize": {
+    "descr": "Groups logs by given fields; optionally executes a subquery in every group",
+    "name": "Transactionize",
+    "params": [],
+    "path": "https://help.sumologic.com/05Search/Search-Query-Language/Transaction-Analytics/Transactionize-operator",
+    "syntax": "--",
+    "type": "Search operator"
+  },
+  "transpose": {
+    "descr": "Transpose aggregated results",
+    "name": "Transpose",
+    "params": [],
+    "path": "https://help.sumologic.com/05Search/Search-Query-Language/Search-Operators/transpose",
+    "syntax": "--",
+    "type": "Search operator"
+  },
+  "trim": {
+    "descr": "Eliminates leading and trailing spaces from a string field",
+    "name": "Trim",
+    "params": [],
+    "path": "https://help.sumologic.com/Special:Search?qid=&fpid=230&fpth=&path=&q=trim",
+    "syntax": "--",
+    "type": "--"
+  },
+  "urldecode": {
+    "descr": "Decode URL parameter values",
+    "name": "URL Decode",
+    "params": [],
+    "path": "https://help.sumologic.com/Special:Search?qid=&fpid=230&fpth=&path=&q=urldecode",
+    "syntax": "--",
+    "type": "--"
+  },
+  "urlencode": {
+    "descr": "Encodes the URL into ASCII character set",
+    "name": "URL Encode",
+    "params": [],
+    "path": "https://help.sumologic.com/Special:Search?qid=&fpid=230&fpth=&path=&q=urlencode",
+    "syntax": "--",
+    "type": "--"
+  },
+  "where": {
+    "descr": "Conditional operator for filtering search results",
+    "name": "Where",
+    "params": [],
+    "path": "https://help.sumologic.com/05Search/Search-Query-Language/Search-Operators/where",
+    "syntax": "--",
+    "type": "Search operator"
+  }
+}

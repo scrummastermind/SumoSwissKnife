@@ -1,0 +1,34 @@
+{
+    "expand_to": "file",
+    "show_result_on_window": false,
+    "focus_on_result": false,
+    "clear_output": true,
+    "thread_timeout": 15,
+    "use_streams": false,
+    "history_size": 100,
+    "results_page_size": 250,
+    "results_format": "grid",
+    "time_zone": "UTC",
+    "show_records": {
+        "limit": 50
+    },
+    "safe_limit": false,
+    "debug": false,
+    "show_query": false,
+
+    "format": {
+        "keyword_case"    : "upper",
+        "identifier_case" : null,
+        "strip_comments"  : false,
+        "indent_tabs"     : false,
+        "indent_width"    : 4,
+        "reindent"        : true
+    },
+
+    "autocomplete_selectors_active": [
+        "source.sumo",
+    ],
+
+    "autocomplete_selectors_ignore": [
+    ]
+}

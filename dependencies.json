@@ -1,0 +1,7 @@
+{
+   "*": {
+      "*": [
+         "requests", "tabulate", "numpy", "bs4", "dateutil","pytz"
+      ]
+   }
+}

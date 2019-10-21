@@ -1,0 +1,42 @@
+%YAML 1.2
+---
+name: SLQLO
+file_extensions:
+  - slqlo
+
+scope: source.sumout
+
+variables:
+  identifier_continue: '[[:alnum:]_]'
+  identifier: '\b[[:alpha:]_]{{identifier_continue}}*\b'
+  digitpart: (?:\d(?:_?\d)*)
+
+contexts:
+  main:
+    - match: '(ID:)([\S]+)'
+      captures:
+        2: variable.language
+        1: keyword.other
+
+    - match: '\b(Scheduled Views|From Time|To Time|Records|Messages|Collectors|Collector|Sources|FERs|Partitions Indexes)\b'
+      captures:
+        2: variable.language
+        1: keyword.other
+
+    - match: (Pending Warnings|Pending Errors)
+      captures:
+        1: support.function
+
+    - match: '\+(=)+|\+|Completions|#|DONE GATHERING RESULTS | ([0-9]+\.[0-9]+)%'
+      scope: variable.language
+
+    - match: '=|\-|:|<|>'
+      scope: keyword.other
+
+    - match: \|
+      scope: support.function
+
+    - match: successfuly|▮|Loaded|DONE!|http[s]?://[^\s]+
+      scope: string.quoted
+
+

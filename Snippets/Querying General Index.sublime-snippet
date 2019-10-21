@@ -1,0 +1,14 @@
+<snippet>
+	<content>
+		<![CDATA[* | _view as _view | where _view=""
+]]>
+	</content>
+	<tabTrigger>sumo: Query The General Index</tabTrigger>
+	<scope>source.sumo</scope>
+</snippet>
+
+
+	
+	
+	
+	

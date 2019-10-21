@@ -1,0 +1,48 @@
+[
+    {
+        "caption": "Preferences",
+        "mnemonic": "n",
+        "id": "preferences",
+        "children":
+        [
+            {
+                "caption": "Package Settings",
+                "mnemonic": "P",
+                "id": "package-settings",
+                "children":
+                [
+                    {
+                        "caption": "SumoSwissKnife",
+                        "children":
+                        [
+                            {
+                                "caption": "Connections",
+                                "command": "edit_settings", "args":
+                                {
+                                    "base_file": "${packages}/SumoSwissKnife/SumoSwissKnifeConnections.sublime-settings",
+                                    "default": "// List all your connections to DBs here\n{\n\t\"connections\": {\n\t\t$0\n\t},\n\t\"default\": null\n}"
+                                }
+                            },
+                            {
+                                "caption": "Settings",
+                                "command": "edit_settings", "args":
+                                {
+                                    "base_file": "${packages}/SumoSwissKnife/SumoSwissKnife.sublime-settings",
+                                    "default": "// Settings in here override those in \"SumoSwissKnife/SumoSwissKnife.sublime-settings\"\n{\n\t$0\n}\n"
+                                }
+                            },
+                            {
+                                "caption": "Key Bindings",
+                                "command": "edit_settings", "args":
+                                {
+                                    "base_file": "${packages}/SumoSwissKnife/Default ($platform).sublime-keymap",
+                                    "default": "[\n\t$0\n]\n"
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+]
