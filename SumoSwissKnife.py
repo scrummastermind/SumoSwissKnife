@@ -27,7 +27,7 @@ from .SumoSwissKnifeAPI.Utils import get_time_window_mappings_list,\
 
 MESSAGE_RUNNING_CMD = 'Calling Sumo Logic Endpoint...'
 SYNTAX_PLAIN_TEXT = 'Packages/Text/Plain text.tmLanguage'
-SYNTAX_Sumo = 'Packages/SumoSwissKnife/syntax_test_SumoLogic.sublime-syntax'
+SYNTAX_Sumo = 'Packages/SumoSwissKnife/SumoLogic.sublime-syntax'
 COMPLETIONS_Sumo = 'SumoLogic_completions.json'
 SumoSwissKnife_SETTINGS_FILE = 'SumoSwissKnife.sublime-settings'
 SumoSwissKnife_CONNECTIONS_FILE = 'SumoSwissKnifeConnections.sublime-settings'
