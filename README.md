@@ -2,9 +2,7 @@
 
 Your Sublime Text Swiss Knife For Sumo Logic.
 
-Write your Sumo with smart completions including all the metada Sumo Logic to offer, execute Sumo Logic queries, format your queries in more that many different formats.
-
-All the above done within a multi org connection manager.
+Write your Sumo with smart completions, including all the metadata Sumo Logic to offer, execute Sumo Logic queries, format your queries' results in many different formats, with multi org connection manager.
 
 Project website: https://sumologic.com/SublimeText-SumoSwissKnife/ (TBC)
 
@@ -15,7 +13,8 @@ Project website: https://sumologic.com/SublimeText-SumoSwissKnife/ (TBC)
 
 Documentation: https://sumologic.com/SublimeText-SumoSwissKnife/
 
-## Istallation
+## Installation
 * Download the repository SumoSwissKnife-master.zip
 * Unzip the contents to ~/Library/Application Support/Sublime Text 3/Packages/SumoSwissKnife
-* Start sublime, then from the command palette execute sumo:Setup Connection 
+* Start sublime, then from the command palette execute sumo: Setup Connection 
+* Open/Create new, Sumo query file with .slql, select the newly created connection, and you are good to go
