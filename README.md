@@ -1,9 +1,4 @@
-   _____                          _____         _              __ __       _ ____   
-  / ___/__  ______ ___  ____     / ___/      __(_)_________   / //_/____  (_) __/__ 
-  \__ \/ / / / __ `__ \/ __ \    \__ \ | /| / / / ___/ ___/  / ,<  / __ \/ / /_/ _ \
- ___/ / /_/ / / / / / / /_/ /   ___/ / |/ |/ / (__  |__  )  / /| |/ / / / / __/  __/
-/____/\__,_/_/ /_/ /_/\____/   /____/|__/|__/_/____/____/  /_/ |_/_/ /_/_/_/  \___/ 
-
+# SumoSwissKnife
 
 Your Sublime Text Swiss Knife For Sumo Logic.
 
@@ -19,3 +14,8 @@ Project website: https://sumologic.com/SublimeText-SumoSwissKnife/ (TBC)
 ## Configuration
 
 Documentation: https://sumologic.com/SublimeText-SumoSwissKnife/
+
+## Istallation
+* Download the repository SumoSwissKnife-master.zip
+* Unzip the contents to ~/Library/Application Support/Sublime Text 3/Packages/SumoSwissKnife
+* Start sublime, then from the command palette execute sumo:Setup Connection 
