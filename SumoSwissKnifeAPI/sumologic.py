@@ -59,13 +59,15 @@ class SumoLogic(object):
         if m:
             resource_name = m.group(1)
         sumo_error['resource_name'] = toTitle(resource_name)
-        request_errors = errors_json_data['errors']
         error_msg_errors = []
-        for error in request_errors:
-            current_error = {}
-            current_error['code'] = toTitle(error['code'])
-            current_error['message'] = error['message']
-            error_msg_errors.append(current_error)
+        if errors_json_data and 'errors' in errors_json_data.keys():
+            request_errors = errors_json_data['errors']
+            for error in request_errors:
+                current_error = {}
+                current_error['code'] = toTitle(error['code'])
+                current_error['message'] = error['message']
+                error_msg_errors.append(current_error)
+
         sumo_error['errors'] = error_msg_errors
 
         formatted_error_msg=' - Error - {id}:\n'.format(id=error_id)

@@ -360,6 +360,7 @@ class ST(EventListener):
     users = []
     role_lookup = {}
     collector_offset = 0
+    load_connection_data_stats = {'collectors': False, 'sources': {}, 'fers': False, 'roles': False, 'users': False, 'exports': False, 'partitions': False, 'svs': False}
 
     @staticmethod
     def on_selection_modified(view):
@@ -530,8 +531,17 @@ class ST(EventListener):
         promptNext()
 
     @staticmethod
+    def check_connection_data_progress():
+        stats = True
+        for val in ST.load_connection_data_stats.values():
+            if isinstance(val, dict):
+                for entry in val.values():
+                    stats = stats and entry
+            stats = stats and val
+        return stats
+
+    @staticmethod
     def loadConnectionData(callback=None):
-        reshape()
         if not View().match_selector(0, 'source.sumo'):
             return None
 
@@ -641,6 +651,8 @@ class ST(EventListener):
             Window().run_command("hide_panel", {"panel": "output." + 'Logs'})
 
         def processCollectors(collectors=None, params=None, saveRawJsonMeta=True):
+            print('we are in processCollectors')
+            print('the objectsLoaded is {objectsLoaded}'.format(objectsLoaded=objectsLoaded))
             items = collectors
             if items and len(items)==1 and 'errors' in items[0].keys():
 
@@ -648,59 +660,35 @@ class ST(EventListener):
 
                 update_connection_loading_wip('\n{err}\n'.format(err=error['msg']))
                 ST.items = items
-                nonlocal objectsLoaded
-                objectsLoaded += 1
-
-                if objectsLoaded == 7:
+                ST.load_connection_data_stats['collectors'] = True
+                if ST.check_connection_data_progress():
                     afterAllDataHasLoaded(saveRawJsonMeta)
                 return
-
-            if items and len(items) >= 5:
-                ST.collector_offset += 5
-                if params:
-                    request_params = params['request_params']
-
-                    if request_params:
-                        request_params['offset'] = ST.collector_offset
-                        request_params['limit'] = 5
-                    else:
-                        request_params = {'offset': ST.collector_offset, 'limit': 5}
-            else:
-                params['request_params'] = None
-                nonlocal objectsLoaded
-                objectsLoaded += 1
 
             loaded = 'Loaded' if saveRawJsonMeta else 'Loaded From Cache'
 
             update_connection_loading_wip(' - {num} Collectors {Loaded}\n'.format(Loaded=loaded, num=len(collectors)))
 
             if saveRawJsonMeta:
+                if items and len(items) >= 5:
+                    ST.collector_offset += 5
+                    if params:
+                        request_params = params['request_params']
+
+                        if request_params:
+                            request_params['offset'] = ST.collector_offset
+                            request_params['limit'] = 5
+                        else:
+                            request_params = {'offset': ST.collector_offset, 'limit': 5}
+                else:
+                    params['request_params'] = None
+                    ST.load_connection_data_stats['collectors'] = True
+
                 collectors_dict = None
                 collectors_dict = {collector['id']:collector for collector in collectors}
+                ST.load_connection_data_stats['sources'].update({collector['id']:False for collector in collectors})
+
                 ST.collectors.update(collectors_dict)
-                for id, collector in collectors_dict.items():
-
-                    def sourcesCallback(sources, params=None):
-                        try:
-                            items = sources
-                            if items and len(items)==1 and 'errors' in items[0].keys():
-                                error = items[0]
-                                update_connection_loading_wip('\n{err}\n'.format(err=error['msg']))
-                                ST.items = items
-                                return
-
-                            collector['sources'] = sources
-                            update_connection_loading_wip(
-                                'Adding {num} Sources for Collector [{collector_name}]\n'.
-                                format(num=len(sources), collector_name=collector['name']))
-                        except Exception as e:
-                                update_connection_loading_wip('\n{err}\n'.format(err=str(e)))
-
-                    time.sleep(0.6)
-
-                    ST.conn.getSources(id,
-                                       params=params,
-                                       callback=sourcesCallback)
 
                 if params:
                     if 'request_params' in params:
@@ -710,11 +698,48 @@ class ST(EventListener):
                             update_connection_loading_wip(' - Getting the next {offset} Collectors..'.format(offset=ST.collector_offset))
                             ST.conn.getCollectors(callback=collectorsCallback, params=params)
                         else:
-                            if objectsLoaded == 7:
-                                afterAllDataHasLoaded(saveRawJsonMeta)
+                            for k in ST.load_connection_data_stats['sources'].keys():
+                                if k not in ST.collectors.keys():
+                                    print('forcing')
+                                    print(k)
+                                    ST.load_connection_data_stats['sources'][k]=True
+
+                            for id, collector in ST.collectors.items():
+                                ST.load_connection_data_stats['sources'][id] = True
+
+                                def sourcesCallback(sources, params=None):
+                                    try:
+                                        items = sources
+                                        if items and len(items)==1 and 'errors' in items[0].keys():
+                                            print(id)
+                                            ST.load_connection_data_stats['sources'][id] = True
+                                            error = items[0]
+                                            update_connection_loading_wip('\n{err}\n'.format(err=error['msg']))
+                                            ST.items = items
+                                            return
+
+                                        collector['sources'] = sources
+                                        update_connection_loading_wip(
+                                            'Adding {num} Sources for Collector [{collector_name}]\n'.
+                                            format(num=len(sources), collector_name=collector['name']))
+                                    except Exception as e:
+                                            update_connection_loading_wip('\n{err}\n'.format(err=str(e)))
+
+                                time.sleep(0.6)
+
+                                ST.conn.getSources(id,
+                                                   params=None,
+                                                   callback=sourcesCallback)
+
             else:
+                ST.load_connection_data_stats['collectors'] = True
                 ST.collectors = None
                 ST.collectors = copy.deepcopy(collectors)
+
+            pprint(ST.load_connection_data_stats)
+
+            if ST.check_connection_data_progress():
+                afterAllDataHasLoaded(saveRawJsonMeta)
 
         def collectorsCallback(collectors, params=None):
             processCollectors(collectors=collectors, params=params)
@@ -727,10 +752,9 @@ class ST(EventListener):
 
                 update_connection_loading_wip('\n{err}\n'.format(err=error['msg']))
                 ST.items = items
-                nonlocal objectsLoaded
-                objectsLoaded += 1
+                ST.load_connection_data_stats['fers'] = True
 
-                if objectsLoaded == 7:
+                if ST.check_connection_data_progress():
                     afterAllDataHasLoaded(saveRawJsonMeta)
                 return
 
@@ -752,13 +776,13 @@ class ST(EventListener):
 
                         ST.conn.getFERs(callback=usersCallback, params=params)
 
+                ST.load_connection_data_stats['fers'] = True
 
-            nonlocal objectsLoaded
-            objectsLoaded += 1
 
             update_connection_loading_wip(' - {num} FERs {Loaded}...\n'.format(Loaded=loaded, num=len(ST.fers)))
-            if objectsLoaded == 7:
-                afterAllDataHasLoaded(saveRawJsonMeta)
+
+            if ST.check_connection_data_progress():
+                    afterAllDataHasLoaded(saveRawJsonMeta)
 
         def fersCallback(fers, params=None):
             processFERs(fers=fers, params=params)
@@ -771,10 +795,9 @@ class ST(EventListener):
 
                 update_connection_loading_wip('\n{err}\n'.format(err=error['msg']))
                 ST.items = items
-                nonlocal objectsLoaded
-                objectsLoaded += 1
+                ST.load_connection_data_stats['roles'] = True
 
-                if objectsLoaded == 7:
+                if ST.check_connection_data_progress():
                     afterAllDataHasLoaded(saveRawJsonMeta)
                 return
 
@@ -801,11 +824,9 @@ class ST(EventListener):
                         update_connection_loading_wip(' - Getting Roles next batch {next}\n'.format(next=next_token))
 
                         ST.conn.getRoles(callback=usersCallback, params=params)
+            ST.load_connection_data_stats['roles'] = True
 
-            nonlocal objectsLoaded
-            objectsLoaded += 1
-
-            if objectsLoaded == 7:
+            if ST.check_connection_data_progress():
                 afterAllDataHasLoaded(saveRawJsonMeta)
 
         def rolesCallback(roles, params=None):
@@ -819,10 +840,9 @@ class ST(EventListener):
 
                 update_connection_loading_wip('\n{err}\n'.format(err=error['msg']))
                 ST.items = items
-                nonlocal objectsLoaded
-                objectsLoaded += 1
+                ST.load_connection_data_stats['users'] = True
 
-                if objectsLoaded == 7:
+                if ST.check_connection_data_progress():
                     afterAllDataHasLoaded(saveRawJsonMeta)
                 return
 
@@ -845,11 +865,9 @@ class ST(EventListener):
                         update_connection_loading_wip(' - Getting Users next batch {next}\n'.format(next=next_token))
 
                         ST.conn.getUsers(callback=usersCallback, params=params)
+            ST.load_connection_data_stats['users'] = True
 
-            nonlocal objectsLoaded
-            objectsLoaded += 1
-
-            if objectsLoaded == 7:
+            if ST.check_connection_data_progress():
                 afterAllDataHasLoaded(saveRawJsonMeta)
 
         def usersCallback(users, params=None):
@@ -893,10 +911,10 @@ class ST(EventListener):
             if cached_queries and not saveRawJsonMeta:
                update_connection_loading_wip(' - {num} Personal Folder Contents {Loaded}...\n'.format(Loaded=loaded, num=len(cached_queries)))
                ST.savedQueries = cached_queries
-               nonlocal objectsLoaded
-               objectsLoaded += 1
-               if objectsLoaded == 7:
-                afterAllDataHasLoaded(saveRawJsonMeta)
+               ST.load_connection_data_stats['exports'] = True
+
+               if ST.check_connection_data_progress():
+                    afterAllDataHasLoaded(saveRawJsonMeta)
                ST.folderTypeWIP = None
                return
 
@@ -956,8 +974,9 @@ class ST(EventListener):
             if ST.folderTypeWIP == 'personal' and 'personal' not \
                 in ST.foldersProcessed:
                 ST.foldersProcessed.append('personal')
-            objectsLoaded += 1
-            if objectsLoaded == 7:
+            ST.load_connection_data_stats['exports'] = True
+
+            if ST.check_connection_data_progress():
                 afterAllDataHasLoaded(saveRawJsonMeta)
 
             ST.folderTypeWIP = None
@@ -994,10 +1013,9 @@ class ST(EventListener):
             ST.partitions = partitions
 
             update_connection_loading_wip(' - {num} Partitions Indecies {Loaded}...\n'.format(Loaded=loaded, num=len(ST.partitions)))
+            ST.load_connection_data_stats['partitions'] = True
 
-            nonlocal objectsLoaded
-            objectsLoaded += 1
-            if objectsLoaded == 7:
+            if ST.check_connection_data_progress():
                 afterAllDataHasLoaded(saveRawJsonMeta)
 
         def partitionsCallback(partitions, params=None):
@@ -1021,12 +1039,11 @@ class ST(EventListener):
                         update_connection_loading_wip(' - Getting Scheduled Views next batch {next}\n'.format(next=next_token))
 
                         ST.conn.getScheduledViews(callback=usersCallback, params=params)
-
-            nonlocal objectsLoaded
-            objectsLoaded += 1
+            ST.load_connection_data_stats['svs'] = True
             update_connection_loading_wip(' - {num} Scheduled Views {Loaded}...\n'.format(Loaded=loaded, num=len(ST.views)))
-            if objectsLoaded == 7:
-                afterAllDataHasLoaded(saveRawJsonMeta)
+
+            if ST.check_connection_data_progress():
+                    afterAllDataHasLoaded(saveRawJsonMeta)
 
         def scheduledViewsCallback(views, params=None):
             processScheduledViews(views=views, params=params)
@@ -1390,7 +1407,6 @@ class ST(EventListener):
                 callback()
 
         menu = connectionMenuList(ST.connectionDict)
-        # show pannel with callback above
         Window().show_quick_panel(menu, lambda index:
                                   onConnectionSelected(index, callback))
 
@@ -1586,11 +1602,9 @@ class ST(EventListener):
         selection = view.sel()[0]
 
         initialText = ''
-        # ignore obvious non-identifier selections
         if selection.size() <= 128:
             (row_begin, _) = view.rowcol(selection.begin())
             (row_end, _) = view.rowcol(selection.end())
-            # only consider selections within same line
             if row_begin == row_end:
                 initialText = view.substr(selection)
 
@@ -2124,7 +2138,6 @@ def View():
 
 def reload():
     try:
-        # python 3.0 to 3.3
         import imp
         imp.reload(sys.modules[__package__ + ".SumoSwissKnifeAPI"])
         imp.reload(sys.modules[__package__ + ".SumoSwissKnifeAPI.Utils"])
