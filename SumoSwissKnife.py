@@ -16,13 +16,13 @@ import copy
 from sublime_plugin import WindowCommand, EventListener, TextCommand
 from Default.paragraph import expand_to_paragraph
 from .SumoSwissKnifeAPI.Storage import Storage, Settings
-from .SumoSwissKnifeAPI.sumologic import SumoAPIException
 from .SumoSwissKnifeAPI.Connection import Connection
 from .SumoSwissKnifeAPI.History import History
 from .SumoSwissKnifeAPI.Completion import Completion
 from .SumoSwissKnifeAPI.Utils import get_time_window_mappings_list,\
     get_query_time_window, printProgressBar, get_all_timezones,\
-    get_tz_specifc_time, get_tz_specifc_ts, parseRawJson, saveRawJson, get_formatted_results, toTitle, pprint
+    get_tz_specifc_time, get_tz_specifc_ts, parseRawJson, \
+    saveRawJson, get_formatted_results, toTitle, merge_dicts, pprint
 
 
 MESSAGE_RUNNING_CMD = 'Calling Sumo Logic Endpoint...'
@@ -359,6 +359,7 @@ class ST(EventListener):
     roles = []
     users = []
     role_lookup = {}
+    collector_offset = 0
 
     @staticmethod
     def on_selection_modified(view):
@@ -639,7 +640,6 @@ class ST(EventListener):
 
             Window().run_command("hide_panel", {"panel": "output." + 'Logs'})
 
-
         def processCollectors(collectors=None, params=None, saveRawJsonMeta=True):
             items = collectors
             if items and len(items)==1 and 'errors' in items[0].keys():
@@ -655,9 +655,30 @@ class ST(EventListener):
                     afterAllDataHasLoaded(saveRawJsonMeta)
                 return
 
+            if items and len(items) >= 5:
+                ST.collector_offset += 5
+                if params:
+                    request_params = params['request_params']
+
+                    if request_params:
+                        request_params['offset'] = ST.collector_offset
+                        request_params['limit'] = 5
+                    else:
+                        request_params = {'offset': ST.collector_offset, 'limit': 5}
+            else:
+                params['request_params'] = None
+                nonlocal objectsLoaded
+                objectsLoaded += 1
+
+            loaded = 'Loaded' if saveRawJsonMeta else 'Loaded From Cache'
+
+            update_connection_loading_wip(' - {num} Collectors {Loaded}\n'.format(Loaded=loaded, num=len(collectors)))
+
             if saveRawJsonMeta:
-                ST.collectors = {collector['id']:collector for collector in collectors}
-                for id, collector in ST.collectors.items():
+                collectors_dict = None
+                collectors_dict = {collector['id']:collector for collector in collectors}
+                ST.collectors.update(collectors_dict)
+                for id, collector in collectors_dict.items():
 
                     def sourcesCallback(sources, params=None):
                         try:
@@ -680,18 +701,20 @@ class ST(EventListener):
                     ST.conn.getSources(id,
                                        params=params,
                                        callback=sourcesCallback)
+
+                if params:
+                    if 'request_params' in params:
+                        request_params = params['request_params']
+                        if request_params and 'offset' in request_params.keys():
+                            time.sleep(0.6)
+                            update_connection_loading_wip(' - Getting the next {offset} Collectors..'.format(offset=ST.collector_offset))
+                            ST.conn.getCollectors(callback=collectorsCallback, params=params)
+                        else:
+                            if objectsLoaded == 7:
+                                afterAllDataHasLoaded(saveRawJsonMeta)
             else:
                 ST.collectors = None
                 ST.collectors = copy.deepcopy(collectors)
-
-            loaded = 'Loaded' if saveRawJsonMeta else 'Loaded From Cache'
-
-            update_connection_loading_wip(' - {num} Collectors Loaded From Cache...\n'.format(Loaded=loaded, num=len(collectors)))
-
-            nonlocal objectsLoaded
-            objectsLoaded += 1
-            if objectsLoaded == 7:
-                afterAllDataHasLoaded(saveRawJsonMeta)
 
         def collectorsCallback(collectors, params=None):
             processCollectors(collectors=collectors, params=params)
@@ -1049,7 +1072,7 @@ class ST(EventListener):
                 saveRawJsonMeta=False, params=None)
 
         else:
-            ST.conn.getCollectors(callback=collectorsCallback, params={"request_params": {"limit": 1000}})
+            ST.conn.getCollectors(callback=collectorsCallback, params={"request_params": {'offset': 0, 'limit': 5}})
 
         if current_connection_metadata_queries:
             processContentExportJobResult(cached_queries=current_connection_metadata_queries, params=None,saveRawJsonMeta=False)
@@ -1983,7 +2006,7 @@ class StExecuteAll(WindowCommand):
             else:
                 StExecuteAll.populate_status(
                                      job_id, outputContent, fromTime, toTime)
-                time.sleep(5)
+                time.sleep(10)
 
                 Window().run_command("hide_panel", {"panel": "output." + StExecuteAll.results_panel_name})
 
