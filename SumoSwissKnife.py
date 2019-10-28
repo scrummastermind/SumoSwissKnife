@@ -774,7 +774,7 @@ class ST(EventListener):
                         time.sleep(0.6)
                         update_connection_loading_wip(' - Getting FERs Views next batch {next}\n'.format(next=next_token))
 
-                        ST.conn.getFERs(callback=usersCallback, params=params)
+                        ST.conn.getFERs(callback=fersCallback, params=params)
 
                 ST.load_connection_data_stats['fers'] = True
 
@@ -823,7 +823,7 @@ class ST(EventListener):
                         time.sleep(0.6)
                         update_connection_loading_wip(' - Getting Roles next batch {next}\n'.format(next=next_token))
 
-                        ST.conn.getRoles(callback=usersCallback, params=params)
+                        ST.conn.getRoles(callback=rolesCallback, params=params)
             ST.load_connection_data_stats['roles'] = True
 
             if ST.check_connection_data_progress():
@@ -1038,7 +1038,7 @@ class ST(EventListener):
                         time.sleep(0.6)
                         update_connection_loading_wip(' - Getting Scheduled Views next batch {next}\n'.format(next=next_token))
 
-                        ST.conn.getScheduledViews(callback=usersCallback, params=params)
+                        ST.conn.getScheduledViews(callback=scheduledViewsCallback, params=params)
             ST.load_connection_data_stats['svs'] = True
             update_connection_loading_wip(' - {num} Scheduled Views {Loaded}...\n'.format(Loaded=loaded, num=len(ST.views)))
 
