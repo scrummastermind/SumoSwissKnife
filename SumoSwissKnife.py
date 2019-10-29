@@ -542,8 +542,8 @@ class ST(EventListener):
 
     @staticmethod
     def loadConnectionData(callback=None):
-        if not View().match_selector(0, 'source.sumo'):
-            return None
+        # if not View().match_selector(0, 'source.sumo'):
+        #     return None
 
         update_connection_loading_wip = createOutput(name='Logs',
             syntax=SYNTAX_Sumo, show_result_on_window_rt=False)
@@ -670,16 +670,16 @@ class ST(EventListener):
             update_connection_loading_wip(' - {num} Collectors {Loaded}\n'.format(Loaded=loaded, num=len(collectors)))
 
             if saveRawJsonMeta:
-                if items and len(items) >= 5:
-                    ST.collector_offset += 5
+                if items and len(items) >= 50:
+                    ST.collector_offset += 50
                     if params:
                         request_params = params['request_params']
 
                         if request_params:
                             request_params['offset'] = ST.collector_offset
-                            request_params['limit'] = 5
+                            request_params['limit'] = 50
                         else:
-                            request_params = {'offset': ST.collector_offset, 'limit': 5}
+                            request_params = {'offset': ST.collector_offset, 'limit': 50}
                 else:
                     params['request_params'] = None
                     ST.load_connection_data_stats['collectors'] = True
@@ -887,6 +887,8 @@ class ST(EventListener):
                 ST.conn.getContentExportJob(callback=contentExportJobStatus, params=params)
 
         def flatten_json(y):
+            print('Personal JSON Coplex\n')
+            print(y)
             out = {}
 
             def flatten(x, name=''):
@@ -902,6 +904,8 @@ class ST(EventListener):
                     out[name[:-1]] = x
 
             flatten(y)
+            print('Personal JSON Flattened\n')
+            print(out)
             return out
 
         def processContentExportJobResult(contentExportJobStatusJson=None, params=None, saveRawJsonMeta=True, cached_queries=None):
@@ -1089,7 +1093,7 @@ class ST(EventListener):
                 saveRawJsonMeta=False, params=None)
 
         else:
-            ST.conn.getCollectors(callback=collectorsCallback, params={"request_params": {'offset': 0, 'limit': 5}})
+            ST.conn.getCollectors(callback=collectorsCallback, params={"request_params": {'offset': 0, 'limit': 50}})
 
         if current_connection_metadata_queries:
             processContentExportJobResult(cached_queries=current_connection_metadata_queries, params=None,saveRawJsonMeta=False)
