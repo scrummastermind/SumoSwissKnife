@@ -2024,9 +2024,6 @@ class StExecuteAll(WindowCommand):
             else:
                 StExecuteAll.populate_status(
                                      job_id, outputContent, fromTime, toTime)
-                time.sleep(10)
-
-                Window().run_command("hide_panel", {"panel": "output." + StExecuteAll.results_panel_name})
 
                 ST.search_job_id = job_id
                 ST.message_count = message_count
@@ -2037,6 +2034,10 @@ class StExecuteAll(WindowCommand):
                         Window().run_command("st_select_results_records_page")
                     elif message_count > 0:
                         Window().run_command("st_select_results_messages_page")
+
+                time.sleep(10)
+
+                Window().run_command("hide_panel", {"panel": "output." + StExecuteAll.results_panel_name})
 
         def get_job_id(outputContent, params):
             job_id = outputContent['id']
