@@ -18,6 +18,7 @@ Write your Sumo with smart completions, including all the metadata Sumo Logic to
 ## Features
 
   Started it as a syntax highlight but then extended it to:
+* Highlight keywords, right click for further information and Sumo Docs link
 * Run queries
 * Get all metadata (collectors, source categories, sources, users, roles, FERs, views and saved queries (personal folder))
 * Output in major formats including but not limited to (CSV, Jira, Grid, Github, HTML etc.)
