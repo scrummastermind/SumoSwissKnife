@@ -2,6 +2,8 @@
 
 Your Sublime Text Swiss Knife For Sumo Logic.
 
+[Inspired by SublimeText-SQLTools](https://github.com/mtxr/SublimeText-SQLTools)
+
 Write your Sumo with smart completions, including all the metadata Sumo Logic to offer, execute Sumo Logic queries, format your queries' results in many different formats, with multi org connection manager.
 
 ![Preview](/Sumo_Sublime.gif)
