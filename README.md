@@ -4,6 +4,7 @@ Your Sublime Text Swiss Knife For Sumo Logic.
 
 Write your Sumo with smart completions, including all the metadata Sumo Logic to offer, execute Sumo Logic queries, format your queries' results in many different formats, with multi org connection manager.
 
+![Preview](/Sumo_Sublime.gif)
 
 ## Installation
 * Download the repository SumoSwissKnife-master.zip
