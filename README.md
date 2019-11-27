@@ -13,7 +13,7 @@ Write your Sumo with smart completions, including all the metadata Sumo Logic to
 * Unzip the contents to ~/Library/Application Support/Sublime Text 3/Packages/SumoSwissKnife
 * Create a [Sumo Logic AccessID/AcessKey](https://help.sumologic.com/Manage/Security/Access-Keys#create-an-access-key) pair
 * Start sublime, then from the command palette execute sumo: Setup Connection 
-* Open/Create new, Sumo query file with .slql, select the newly created connection, and you are good to go
+* Open/Create new, Sumo query file with .sumo, select the newly created connection, and you are good to go
 
 ## Features
 
