@@ -39,3 +39,7 @@ Write your Sumo with smart completions, including all the metadata Sumo Logic to
 * Select time range
 * Customize it if needed
 * You may change the outpu format Command Palette > Sumo: Change Results Format
+
+## TODO
+
+Due to python threading limitation, future plan to replace the metedata chache generator by golang based cli, to be used as stanalone as well as a hook for this plugn
