@@ -23,6 +23,7 @@ Write your Sumo with smart completions, including all the metadata Sumo Logic to
 * Get all metadata (collectors, source categories, sources, users, roles, FERs, views and saved queries (personal folder))
 * Output in major formats including but not limited to (CSV, Jira, Grid, Github, HTML etc.)
 * Autocompletion including sumo metadata
+* Bueatify fields, highlight one or more fieleds (e.g number_of_users) right click SumoSwisKnife > Beatify selected field(s), then it be alised to %"Number Of Users"
 
 ## Give it a go!
 * Create new file with ".sumo" extension
