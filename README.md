@@ -4,14 +4,24 @@ Your Sublime Text Swiss Knife For Sumo Logic.
 
 Write your Sumo with smart completions, including all the metadata Sumo Logic to offer, execute Sumo Logic queries, format your queries' results in many different formats, with multi org connection manager.
 
-Project website: https://sumologic.com/SublimeText-SumoSwissKnife/ (TBC)
 
 ## Features
 
 
 ## Configuration
+* Create new file with ".sumo" extension
+* Command Palette > Sumo: Setup Connections (Then add your AccessId/AccessKey)
+* Select your connection
+* try query:
 
-Documentation: https://sumologic.com/SublimeText-SumoSwissKnife/
+``` ruby
+| count by _sourceCategory
+
+```
+* Command Palette > Sumo: Run Current File Query
+* Select time range
+* Customize it if needed
+* You may change the outpu format Command Palette > Sumo: Change Results Format
 
 ## Installation
 * Download the repository SumoSwissKnife-master.zip
