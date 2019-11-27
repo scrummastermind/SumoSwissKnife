@@ -13,6 +13,13 @@ Write your Sumo with smart completions, including all the metadata Sumo Logic to
 * Start sublime, then from the command palette execute sumo: Setup Connection 
 * Open/Create new, Sumo query file with .slql, select the newly created connection, and you are good to go
 
+## Features
+
+  Started it as a syntax highlight but then extended it to:
+* Run queries
+* Get all metadata (collectors, source categories, sources, users, roles, FERs, views and saved queries (personal folder))
+* Output in major formats including but not limited to (CSV, Jira, Grid, Github, HTML etc.)
+* Autocompletion including sumo metadata
 
 ## Give it a go!
 * Create new file with ".sumo" extension
